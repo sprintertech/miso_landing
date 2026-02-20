@@ -45,9 +45,9 @@ const RainbowBar = ({ clipPath }: { clipPath: MotionValue<string> }) => {
 
 const Step = ({ title, desc, align = "left", active, passed }: { title: string; desc: string; align?: "left" | "right"; active: boolean; passed: boolean }) => {
   return (
-    <div className={`flex w-full ${align === "right" ? "justify-end" : "justify-start"}`}>
+    <div className={`flex w-full justify-start ${align === "right" ? "md:justify-end" : "md:justify-start"}`}>
       <motion.div
-        className={`w-[45%] ${align === "right" ? "text-right" : "text-left"}`}
+        className={`w-full md:w-[45%] text-left ${align === "right" ? "md:text-right" : "md:text-left"}`}
         animate={{
           opacity: active || passed ? 1 : 0.3,
           x: active ? 0 : (align === "left" ? -10 : 10),
@@ -55,14 +55,14 @@ const Step = ({ title, desc, align = "left", active, passed }: { title: string; 
         transition={{ duration: 0.4, ease: "easeOut" }}
       >
         <motion.h3
-          className="text-[28px] font-bold mb-4"
+          className="text-[22px] md:text-[28px] font-bold mb-2 md:mb-4"
           animate={{ color: active ? "#313131" : passed ? "#313131" : "#d4d4d4" }}
           transition={{ duration: 0.3 }}
         >
           {title}
         </motion.h3>
         <motion.p
-          className="text-[16px] font-semibold"
+          className="text-[14px] md:text-[16px] font-semibold"
           animate={{ color: active ? "#717171" : passed ? "#bababa" : "#d4d4d4" }}
           transition={{ duration: 0.3 }}
         >
@@ -96,20 +96,20 @@ export function StartCooking() {
   });
 
   return (
-    <div className="w-full max-w-[1280px] mx-auto py-32 px-4 flex flex-col items-center">
-      <div className="text-center mb-24">
-        <h2 className="text-[48px] font-bold text-[#313131] mb-4">Start Cooking in Minutes</h2>
-        <p className="text-[20px] font-semibold text-[#717171] max-w-[800px] mx-auto">
+    <div className="w-full max-w-[1280px] mx-auto py-16 md:py-32 px-6 md:px-4 flex flex-col items-center">
+      <div className="text-center mb-12 md:mb-24">
+        <h2 className="text-[32px] md:text-[48px] font-bold text-[#313131] mb-4">Start Cooking in Minutes</h2>
+        <p className="text-[16px] md:text-[20px] font-semibold text-[#717171] max-w-[800px] mx-auto">
           Deposit, get your credit line, and start spending.<br />Your money keeps earning the whole time.
         </p>
       </div>
 
       <div ref={containerRef} className="relative w-full max-w-[1000px]">
-        <div className="absolute left-1/2 -translate-x-1/2 top-0 h-full">
+        <div className="absolute left-4 md:left-1/2 md:-translate-x-1/2 top-0 h-full">
           <RainbowBar clipPath={clipPath} />
         </div>
 
-        <div className="flex flex-col gap-32 relative py-10">
+        <div className="flex flex-col gap-16 md:gap-32 relative py-10 pl-8 md:pl-0">
           {STEPS.map((step, i) => (
             <Step
               key={i}

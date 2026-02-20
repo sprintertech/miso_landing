@@ -394,44 +394,46 @@ export function MisoCatcher({ onClose }: { onClose: () => void }) {
         ctx.globalAlpha = 1;
       }
 
+      const sm = W < 500;
       ctx.fillStyle = '#fff';
-      ctx.font = `bold 20px ${PX}`;
+      ctx.font = `bold ${sm ? 14 : 20}px ${PX}`;
       ctx.textAlign = 'left';
-      ctx.fillText(`SCORE`, 24, 40);
+      ctx.fillText(`SCORE`, 16, sm ? 30 : 40);
       const scoreText = String(g.score).padStart(4, '0');
-      ctx.font = `bold 36px ${PX}`;
-      const scoreGrad = ctx.createLinearGradient(24, 48, 24 + 100, 48);
+      ctx.font = `bold ${sm ? 24 : 36}px ${PX}`;
+      const scoreGrad = ctx.createLinearGradient(16, 48, 16 + 100, 48);
       scoreGrad.addColorStop(0, RAINBOW[4]);
       scoreGrad.addColorStop(1, RAINBOW[12]);
       ctx.fillStyle = scoreGrad;
-      ctx.fillText(scoreText, 24, 74);
+      ctx.fillText(scoreText, 16, sm ? 56 : 74);
 
       ctx.fillStyle = '#FF4D6B';
-      ctx.font = `bold 24px ${PX}`;
+      ctx.font = `bold ${sm ? 18 : 24}px ${PX}`;
       ctx.textAlign = 'right';
-      ctx.fillText(g.missed >= 1 ? 'x' : '♥', W - 38, 50);
+      ctx.fillText(g.missed >= 1 ? 'x' : '♥', W - (sm ? 28 : 38), sm ? 36 : 50);
       if (g.missed < 1) {
-        ctx.font = `bold 14px ${PX}`;
-        ctx.fillText('x1', W - 24, 50);
+        ctx.font = `bold ${sm ? 10 : 14}px ${PX}`;
+        ctx.fillText('x1', W - (sm ? 16 : 24), sm ? 36 : 50);
       }
 
       if (!g.running && gameState === 'ready') {
         ctx.fillStyle = 'rgba(0,0,0,0.5)';
         ctx.fillRect(0, 0, W, H);
+        const small = W < 500;
         ctx.fillStyle = '#fff';
-        ctx.font = `bold 32px ${PX}`;
+        ctx.font = `bold ${small ? 24 : 32}px ${PX}`;
         ctx.textAlign = 'center';
         ctx.fillText('MISO CATCHER', W / 2, H / 2 - 50);
-        ctx.font = `16px ${PX}`;
+        ctx.font = `${small ? 13 : 16}px ${PX}`;
         ctx.fillStyle = 'rgba(255,255,255,0.5)';
-        ctx.fillText('Use arrow keys or mouse to move', W / 2, H / 2 - 10);
-        ctx.fillText('Catch ingredients \u2022 Grab crypto for bonus points!', W / 2, H / 2 + 18);
+        ctx.fillText(small ? 'Drag to move the bowl' : 'Use arrow keys or mouse to move', W / 2, H / 2 - 10);
+        ctx.fillText('Catch ingredients \u2022 Grab crypto for bonus!', W / 2, H / 2 + 18);
 
-        ctx.font = `bold 18px ${PX}`;
+        ctx.font = `bold ${small ? 14 : 18}px ${PX}`;
         ctx.fillStyle = '#fff';
         const pulse = 0.7 + Math.sin(Date.now() / 400) * 0.3;
         ctx.globalAlpha = pulse;
-        ctx.fillText('[ PRESS SPACE OR CLICK TO START ]', W / 2, H / 2 + 70);
+        ctx.fillText(small ? '[ TAP TO START ]' : '[ PRESS SPACE OR CLICK TO START ]', W / 2, H / 2 + 70);
         ctx.globalAlpha = 1;
       }
 
@@ -449,8 +451,15 @@ export function MisoCatcher({ onClose }: { onClose: () => void }) {
     const onClickStart = () => {
       if (gameState === 'ready') startGame();
     };
+    const onTouchStart = (e: TouchEvent) => {
+      if (gameState === 'ready') {
+        e.preventDefault();
+        startGame();
+      }
+    };
     window.addEventListener('keydown', onStart);
     canvas.addEventListener('click', onClickStart);
+    canvas.addEventListener('touchstart', onTouchStart, { passive: false });
 
     return () => {
       dead = true;
@@ -462,6 +471,7 @@ export function MisoCatcher({ onClose }: { onClose: () => void }) {
       window.removeEventListener('keyup', onKeyUp);
       window.removeEventListener('keydown', onStart);
       canvas.removeEventListener('click', onClickStart);
+      canvas.removeEventListener('touchstart', onTouchStart);
     };
   }, [gameState, startGame, onClose]);
 
@@ -491,27 +501,27 @@ export function MisoCatcher({ onClose }: { onClose: () => void }) {
       exit={{ opacity: 0 }}
     >
       <motion.div
-        className="relative w-[95vw] max-w-[900px] h-[90vh] max-h-[800px] bg-[#0a0a0a] rounded-[16px] overflow-hidden border-2 border-white/10 shadow-[0_0_60px_rgba(255,77,107,0.15)] flex flex-col"
+        className="relative w-full h-full md:w-[95vw] md:max-w-[900px] md:h-[90vh] md:max-h-[800px] bg-[#0a0a0a] md:rounded-[16px] overflow-hidden md:border-2 md:border-white/10 md:shadow-[0_0_60px_rgba(255,77,107,0.15)] flex flex-col"
         initial={{ scale: 0.9, y: 30 }}
         animate={{ scale: 1, y: 0 }}
         exit={{ scale: 0.9, y: 30 }}
         transition={{ type: 'spring', damping: 20, stiffness: 250 }}
       >
-        <div className="flex items-center justify-between px-5 py-2.5 border-b border-white/10 bg-black/40">
-          <div className="flex items-center gap-3">
-            <div className="flex gap-1">
+        <div className="flex items-center justify-between px-4 md:px-5 py-2.5 border-b border-white/10 bg-black/40 safe-top">
+          <div className="flex items-center gap-2 md:gap-3">
+            <div className="hidden md:flex gap-1">
               {RAINBOW.slice(0, 7).map((c, i) => (
                 <div key={i} className="w-1.5 h-4 rounded-sm" style={{ backgroundColor: c }} />
               ))}
             </div>
-            <span className="text-white/80 text-sm font-bold tracking-[0.2em] uppercase" style={{ fontFamily: PX }}>Miso Catcher</span>
+            <span className="text-white/80 text-xs md:text-sm font-bold tracking-[0.2em] uppercase" style={{ fontFamily: PX }}>Miso Catcher</span>
           </div>
-          <div className="flex items-center gap-3">
-            <div className="flex gap-1 items-center text-white/30 text-[10px]" style={{ fontFamily: PX }}>
+          <div className="flex items-center gap-2 md:gap-3">
+            <div className="hidden md:flex gap-1 items-center text-white/30 text-[10px]" style={{ fontFamily: PX }}>
               <kbd className="px-1.5 py-0.5 rounded bg-white/5 border border-white/10 text-[10px]">&larr;</kbd>
               <kbd className="px-1.5 py-0.5 rounded bg-white/5 border border-white/10 text-[10px]">&rarr;</kbd>
             </div>
-            <button onClick={onClose} className="text-white/30 hover:text-white transition-colors text-sm px-2 py-1 rounded border border-white/10 hover:border-white/30" style={{ fontFamily: PX }}>ESC</button>
+            <button onClick={onClose} className="text-white/30 hover:text-white transition-colors text-xs md:text-sm px-2 py-1 rounded border border-white/10 hover:border-white/30" style={{ fontFamily: PX }}>ESC</button>
           </div>
         </div>
 
@@ -527,7 +537,7 @@ export function MisoCatcher({ onClose }: { onClose: () => void }) {
                 exit={{ opacity: 0 }}
               >
                 <motion.div
-                  className="bg-[#111] rounded-[16px] p-8 w-[90%] max-w-[420px] border border-white/10 shadow-[0_0_40px_rgba(255,77,107,0.1)]"
+                  className="bg-[#111] rounded-[16px] p-5 md:p-8 w-[92%] max-w-[420px] border border-white/10 shadow-[0_0_40px_rgba(255,77,107,0.1)] max-h-[85vh] overflow-y-auto"
                   initial={{ scale: 0.85, y: 20 }}
                   animate={{ scale: 1, y: 0 }}
                   transition={{ type: 'spring', damping: 20 }}

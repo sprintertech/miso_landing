@@ -46,10 +46,10 @@ function RainbowText() {
 
 export function MissingIngredient() {
   return (
-    <div className="flex flex-col items-center justify-center text-center my-32 px-4">
+    <div className="flex flex-col items-center justify-center text-center my-16 md:my-32 px-6">
       <RainbowText />
       
-      <div className="mt-8 max-w-[800px] text-[28px] font-semibold text-[#bababa] leading-normal">
+      <div className="mt-6 md:mt-8 max-w-[800px] text-[18px] md:text-[28px] font-semibold text-[#bababa] leading-normal">
         <p className="mb-8">
           Right now your funds live in different card apps, spending means selling, top-ups are manual, and your collateral options are narrow.
         </p>

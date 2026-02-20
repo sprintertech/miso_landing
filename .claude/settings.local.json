@@ -10,7 +10,11 @@
       "Bash(npx vite build)",
       "Bash(git add -A -- ':!node_modules' ':!dist')",
       "Bash(git add -A)",
-      "Bash(git reset HEAD -- node_modules dist)"
+      "Bash(git reset HEAD -- node_modules dist)",
+      "Bash(git remote set-url origin https://github.com/diogoalmeidaribeiro/miso_landing.git)",
+      "Bash(git remote add origin https://github.com/diogoalmeidaribeiro/miso_landing.git)",
+      "Bash(git branch -M main)",
+      "Bash(git push -u origin main)"
     ],
     "deny": [],
     "ask": []

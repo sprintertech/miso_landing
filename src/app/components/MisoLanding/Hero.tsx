@@ -1,5 +1,5 @@
-import { motion, useMotionValue, useSpring, useTransform } from 'motion/react';
-import { useEffect } from 'react';
+import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from 'motion/react';
+import { useEffect, useState } from 'react';
 import misoLogo from '../../../assets/logo.svg';
 import seaweedSvg from '../../../assets/mascots/Seaweed.svg';
 import carrotSvg from '../../../assets/mascots/Carrot.svg';
@@ -11,13 +11,13 @@ import coinSvg from '../../../assets/mascots/Group 1312321863.svg';
 import stashLogo from '../../../assets/stash.svg';
 
 const mascots = [
-  { src: seaweedSvg, size: 149, finalX: -467, finalY: -227, rotate: 0, floatX: 8, floatY: 12, floatDuration: 6 },
-  { src: carrotSvg, size: 124, finalX: 412, finalY: -178, rotate: 0, floatX: -10, floatY: 8, floatDuration: 5.5 },
-  { src: carrot1Svg, size: 124, finalX: -707, finalY: 32, rotate: 0, floatX: 6, floatY: -10, floatDuration: 7 },
-  { src: coinSvg, size: 99, finalX: -490, finalY: 194, rotate: 0, floatX: -8, floatY: 6, floatDuration: 6.5 },
-  { src: leekSvg, size: 149, finalX: 430, finalY: 287, rotate: 0, floatX: 10, floatY: -8, floatDuration: 5 },
-  { src: tofuSvg, size: 99, finalX: 793, finalY: -11, rotate: 0, floatX: -6, floatY: 10, floatDuration: 7.5 },
-  { src: leek1Svg, size: 149, finalX: 818, finalY: -398, rotate: 0, floatX: 7, floatY: -7, floatDuration: 6.2 },
+  { src: seaweedSvg, size: 149, finalX: -467, finalY: -227, mobileX: -140, mobileY: -200, mobileSize: 70, rotate: 0, floatX: 8, floatY: 12, floatDuration: 6 },
+  { src: carrotSvg, size: 124, finalX: 412, finalY: -178, mobileX: 130, mobileY: -180, mobileSize: 60, rotate: 0, floatX: -10, floatY: 8, floatDuration: 5.5 },
+  { src: carrot1Svg, size: 124, finalX: -707, finalY: 32, mobileX: -160, mobileY: 30, mobileSize: 55, rotate: 0, floatX: 6, floatY: -10, floatDuration: 7 },
+  { src: coinSvg, size: 99, finalX: -490, finalY: 194, mobileX: -130, mobileY: 180, mobileSize: 45, rotate: 0, floatX: -8, floatY: 6, floatDuration: 6.5 },
+  { src: leekSvg, size: 149, finalX: 430, finalY: 287, mobileX: 140, mobileY: 200, mobileSize: 65, rotate: 0, floatX: 10, floatY: -8, floatDuration: 5 },
+  { src: tofuSvg, size: 99, finalX: 793, finalY: -11, mobileX: 165, mobileY: 20, mobileSize: 45, rotate: 0, floatX: -6, floatY: 10, floatDuration: 7.5 },
+  { src: leek1Svg, size: 149, finalX: 818, finalY: -398, mobileX: 155, mobileY: -260, mobileSize: 55, rotate: 0, floatX: 7, floatY: -7, floatDuration: 6.2 },
 ];
 
 const words = ['Let', 'Your', 'Money', 'Cook'];
@@ -26,9 +26,52 @@ const DOT_DELAY = words.length * WORD_STAGGER + 0.3;
 const SUBTITLE_DELAY = DOT_DELAY + 0.5;
 const MASCOT_DELAY = 0.2;
 
+function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
+  return (
+    <AnimatePresence>
+      {open && (
+        <motion.div
+          className="fixed inset-0 z-[100] bg-white flex flex-col"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.25 }}
+        >
+          <div className="flex items-center justify-between px-6 py-5">
+            <img src={misoLogo} alt="miso" className="h-[20px]" />
+            <button onClick={onClose} className="w-10 h-10 flex items-center justify-center">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M4 4L16 16M16 4L4 16" stroke="#313131" strokeWidth="2" strokeLinecap="round" />
+              </svg>
+            </button>
+          </div>
+          <div className="flex flex-col items-center gap-8 mt-12">
+            <span className="text-2xl font-semibold text-[#313131] cursor-pointer" onClick={onClose}>Features</span>
+            <span className="text-2xl font-semibold text-[#313131] cursor-pointer" onClick={onClose}>How It Works</span>
+            <span className="text-2xl font-semibold text-[#313131] cursor-pointer" onClick={onClose}>About</span>
+            <div className="group bg-[#313131] text-white px-8 py-3 rounded-full text-lg font-bold cursor-pointer flex items-center gap-1 mt-4">
+              Get Miso
+              <span className="inline-block max-w-0 overflow-hidden opacity-0 transition-all duration-200 group-hover:max-w-[20px] group-hover:opacity-100">→</span>
+            </div>
+          </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+}
+
 export function Hero({ onEasterEgg }: { onEasterEgg?: () => void }) {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -47,7 +90,7 @@ export function Hero({ onEasterEgg }: { onEasterEgg?: () => void }) {
   return (
     <div className="relative w-full h-[100vh] overflow-hidden bg-white flex flex-col items-center justify-center perspective-[1000px]">
 
-      <div className="absolute top-6 left-1/2 -translate-x-1/2 bg-[#f2f2f2] rounded-full pl-6 pr-[6px] py-[6px] flex items-center gap-8 z-50">
+      <div className="absolute top-6 left-1/2 -translate-x-1/2 bg-[#f2f2f2] rounded-full pl-6 pr-[6px] py-[6px] flex items-center gap-8 z-50 max-md:hidden">
         <img src={misoLogo} alt="miso" className="h-[20px] shrink-0" />
         <div className="flex gap-6 text-sm font-semibold text-[#313131]">
             <span className="cursor-pointer transition-colors hover:text-[#ff7416]">Features</span>
@@ -60,11 +103,22 @@ export function Hero({ onEasterEgg }: { onEasterEgg?: () => void }) {
         </div>
       </div>
 
+      <div className="absolute top-0 left-0 right-0 flex items-center justify-between px-5 py-5 z-50 md:hidden">
+        <img src={misoLogo} alt="miso" className="h-[18px]" />
+        <button onClick={() => setMenuOpen(true)} className="w-10 h-10 flex items-center justify-center rounded-full bg-[#f2f2f2]">
+          <svg width="18" height="14" viewBox="0 0 18 14" fill="none">
+            <path d="M1 1H17M1 7H17M1 13H17" stroke="#313131" strokeWidth="2" strokeLinecap="round" />
+          </svg>
+        </button>
+      </div>
+
+      <MobileMenu open={menuOpen} onClose={() => setMenuOpen(false)} />
+
       <motion.div
-        className="relative z-10 flex flex-col items-center text-center gap-6"
-        style={{ rotateX: smoothRotateX, rotateY: smoothRotateY }}
+        className="relative z-10 flex flex-col items-center text-center gap-4 md:gap-6 px-6"
+        style={isMobile ? undefined : { rotateX: smoothRotateX, rotateY: smoothRotateY }}
       >
-        <h1 className="text-[88px] font-bold text-[#313131] leading-[0.9] flex flex-wrap justify-center gap-x-[0.3em]">
+        <h1 className="text-[48px] md:text-[88px] font-bold text-[#313131] leading-[0.9] flex flex-wrap justify-center gap-x-[0.3em]">
           {words.map((word, i) => (
             <motion.span
               key={i}
@@ -87,7 +141,7 @@ export function Hero({ onEasterEgg }: { onEasterEgg?: () => void }) {
           ))}
         </h1>
         <motion.p
-          className="text-[20px] font-semibold text-[#717171] max-w-[600px]"
+          className="text-[16px] md:text-[20px] font-semibold text-[#717171] max-w-[600px]"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: SUBTITLE_DELAY }}
@@ -95,7 +149,7 @@ export function Hero({ onEasterEgg }: { onEasterEgg?: () => void }) {
           Your cards, credit, earnings, and automation all in one app.
         </motion.p>
         <motion.div
-          className="group bg-[#313131] text-white px-8 py-3 rounded-full font-bold flex items-center gap-1 cursor-pointer mt-4 hover:scale-105 transition-transform"
+          className="group bg-[#313131] text-white px-8 py-3 rounded-full font-bold flex items-center gap-1 cursor-pointer mt-4 hover:scale-105 transition-transform text-[14px] md:text-[16px]"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: SUBTITLE_DELAY + 0.15 }}
@@ -127,17 +181,17 @@ export function Hero({ onEasterEgg }: { onEasterEgg?: () => void }) {
       </motion.div>
 
       <div className="absolute inset-0 pointer-events-none z-0 flex items-center justify-center">
-        {mascots.map(({ src, size, finalX, finalY, rotate, floatX, floatY, floatDuration }, i) => (
+        {mascots.map(({ src, size, finalX, finalY, mobileX, mobileY, mobileSize, rotate, floatX, floatY, floatDuration }, i) => (
           <motion.div
             key={i}
             className="absolute"
-            style={{ width: size, height: size }}
+            style={{ width: isMobile ? mobileSize : size, height: isMobile ? mobileSize : size }}
             initial={{ x: 0, y: 0, scale: 0, opacity: 0, rotate: 0 }}
             animate={{
-              x: finalX,
-              y: finalY,
+              x: isMobile ? mobileX : finalX,
+              y: isMobile ? mobileY : finalY,
               scale: 1,
-              opacity: 1,
+              opacity: isMobile ? 0.6 : 1,
               rotate,
             }}
             transition={{
@@ -149,8 +203,8 @@ export function Hero({ onEasterEgg }: { onEasterEgg?: () => void }) {
             <motion.div
               className="w-full h-full"
               animate={{
-                x: [0, floatX, 0, -floatX * 0.5, 0],
-                y: [0, floatY, 0, -floatY * 0.5, 0],
+                x: [0, floatX * (isMobile ? 0.5 : 1), 0, -floatX * 0.5 * (isMobile ? 0.5 : 1), 0],
+                y: [0, floatY * (isMobile ? 0.5 : 1), 0, -floatY * 0.5 * (isMobile ? 0.5 : 1), 0],
               }}
               transition={{
                 duration: floatDuration,
