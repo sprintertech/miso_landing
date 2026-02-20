@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__figma-remote-mcp__whoami",
+      "Bash(curl -sL \"https://www.figma.com/api/mcp/asset/88632d2f-213c-4d9c-835f-5de8693b3576\" -o /Users/diogoribeiro/brocode/miso_landing/src/assets/miso-bowl-cta.png)",
+      "mcp__figma-remote-mcp__get_design_context",
+      "mcp__figma-remote-mcp__get_screenshot",
+      "Bash(npx tsc --noEmit)",
+      "Bash(./node_modules/.bin/tsc --noEmit)",
+      "Bash(npx vite build)",
+      "Bash(git add -A -- ':!node_modules' ':!dist')",
+      "Bash(git add -A)",
+      "Bash(git reset HEAD -- node_modules dist)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
