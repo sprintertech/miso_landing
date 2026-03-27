@@ -96,7 +96,7 @@ export function StartCooking() {
   });
 
   return (
-    <div className="w-full max-w-[1280px] mx-auto py-16 md:py-32 px-6 md:px-4 flex flex-col items-center">
+    <div id="how-it-works" className="w-full max-w-[1280px] mx-auto py-16 md:py-32 px-6 md:px-4 flex flex-col items-center scroll-mt-20">
       <div className="text-center mb-12 md:mb-24">
         <h2 className="text-[32px] md:text-[48px] font-bold text-[#313131] mb-4">Start Cooking in Minutes</h2>
         <p className="text-[16px] md:text-[20px] font-semibold text-[#717171] max-w-[800px] mx-auto">

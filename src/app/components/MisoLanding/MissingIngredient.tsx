@@ -46,7 +46,7 @@ function RainbowText() {
 
 export function MissingIngredient() {
   return (
-    <div className="flex flex-col items-center justify-center text-center my-16 md:my-32 px-6">
+    <div id="about" className="flex flex-col items-center justify-center text-center my-16 md:my-32 px-6 scroll-mt-20">
       <RainbowText />
       
       <div className="mt-6 md:mt-8 max-w-[800px] text-[18px] md:text-[28px] font-semibold text-[#bababa] leading-normal">

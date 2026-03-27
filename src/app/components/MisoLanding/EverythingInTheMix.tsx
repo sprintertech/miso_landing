@@ -100,7 +100,7 @@ function MixingLevels() {
 
 export function EverythingInTheMix() {
   return (
-    <div className="w-full max-w-[1280px] mx-auto px-4 py-12 md:py-20 flex flex-col items-center">
+    <div id="features" className="w-full max-w-[1280px] mx-auto px-4 py-12 md:py-20 flex flex-col items-center scroll-mt-20">
       <div className="text-center mb-10 md:mb-16 px-2">
         <h2 className="text-[32px] md:text-[48px] font-bold text-[#313131] mb-4">Everything In The Mix</h2>
         <p className="text-[16px] md:text-[20px] font-semibold text-[#717171] max-w-[800px] mx-auto">

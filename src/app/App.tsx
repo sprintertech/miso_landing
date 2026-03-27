@@ -7,6 +7,7 @@ import { EverythingInTheMix } from "./components/MisoLanding/EverythingInTheMix"
 import { StartCooking } from "./components/MisoLanding/StartCooking";
 import { Footer } from "./components/MisoLanding/Footer";
 import { MisoCatcher } from "./components/MisoLanding/MisoCatcher";
+import { SignupModal } from "./components/MisoLanding/SignupModal";
 
 function AnimatedBowl({ visible }: { visible: boolean }) {
   const [eyesRight, setEyesRight] = useState(true);
@@ -95,7 +96,7 @@ function AnimatedBowl({ visible }: { visible: boolean }) {
   );
 }
 
-function BottomCTA() {
+function BottomCTA({ onOpenSignup }: { onOpenSignup: () => void }) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -105,8 +106,8 @@ function BottomCTA() {
         <div className="flex flex-col gap-3 md:gap-4 items-start justify-center px-6 py-8 md:px-10 md:py-10">
           <h2 className="text-[28px] md:text-[48px] font-bold text-[#1f1f1f] leading-tight max-w-[70%] md:max-w-none">Your money should work both ways</h2>
           <p className="text-[14px] md:text-[20px] font-semibold text-[#717171] leading-relaxed md:leading-[32px] max-w-[65%] md:max-w-none">Credit when you need it, earnings that never stop. Why choose?</p>
-          <div className="group bg-[#1f1f1f] text-white px-6 md:px-8 py-3 rounded-full font-bold flex items-center gap-1 cursor-pointer hover:scale-105 transition-transform text-[14px] md:text-[16px]">
-            Get Miso
+          <div onClick={onOpenSignup} className="group bg-[#1f1f1f] text-white px-6 md:px-8 py-3 rounded-full font-bold flex items-center gap-1 cursor-pointer hover:scale-105 transition-transform text-[14px] md:text-[16px]">
+            Get Early Access
             <span className="inline-block max-w-0 overflow-hidden opacity-0 transition-all duration-200 group-hover:max-w-[20px] group-hover:opacity-100">→</span>
           </div>
         </div>
@@ -120,6 +121,8 @@ function BottomCTA() {
 
 export default function App() {
   const [gameOpen, setGameOpen] = useState(false);
+  const [signupOpen, setSignupOpen] = useState(false);
+  const openSignup = () => setSignupOpen(true);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -134,19 +137,22 @@ export default function App() {
 
   return (
     <div className="w-full bg-white font-['Plus_Jakarta_Sans',sans-serif] overflow-x-hidden">
-      <Hero onEasterEgg={() => setGameOpen(true)} />
+      <Hero onOpenSignup={openSignup} />
       <Stats />
       <MissingIngredient />
       <EverythingInTheMix />
       <StartCooking />
 
       {/* Bottom CTA Section */}
-      <BottomCTA />
+      <BottomCTA onOpenSignup={openSignup} />
 
       <Footer />
 
       <AnimatePresence>
         {gameOpen && <MisoCatcher onClose={() => setGameOpen(false)} />}
+      </AnimatePresence>
+      <AnimatePresence>
+        {signupOpen && <SignupModal onClose={() => setSignupOpen(false)} />}
       </AnimatePresence>
     </div>
   );

@@ -46,11 +46,11 @@ function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
             </button>
           </div>
           <div className="flex flex-col items-center gap-8 mt-12">
-            <span className="text-2xl font-semibold text-[#313131] cursor-pointer" onClick={onClose}>Features</span>
-            <span className="text-2xl font-semibold text-[#313131] cursor-pointer" onClick={onClose}>How It Works</span>
-            <span className="text-2xl font-semibold text-[#313131] cursor-pointer" onClick={onClose}>About</span>
-            <div className="group bg-[#313131] text-white px-8 py-3 rounded-full text-lg font-bold cursor-pointer flex items-center gap-1 mt-4">
-              Get Miso
+            <a href="#features" className="text-2xl font-semibold text-[#313131] cursor-pointer" onClick={onClose}>Features</a>
+            <a href="#how-it-works" className="text-2xl font-semibold text-[#313131] cursor-pointer" onClick={onClose}>How It Works</a>
+            <a href="#about" className="text-2xl font-semibold text-[#313131] cursor-pointer" onClick={onClose}>About</a>
+            <div onClick={onOpenSignup} className="group bg-[#313131] text-white px-8 py-3 rounded-full text-lg font-bold cursor-pointer flex items-center gap-1 mt-4">
+              Get Early Access
               <span className="inline-block max-w-0 overflow-hidden opacity-0 transition-all duration-200 group-hover:max-w-[20px] group-hover:opacity-100">→</span>
             </div>
           </div>
@@ -60,7 +60,7 @@ function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
   );
 }
 
-export function Hero({ onEasterEgg }: { onEasterEgg?: () => void }) {
+export function Hero({ onOpenSignup }: { onOpenSignup: () => void }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const mouseX = useMotionValue(0);
@@ -93,12 +93,12 @@ export function Hero({ onEasterEgg }: { onEasterEgg?: () => void }) {
       <div className="absolute top-6 left-1/2 -translate-x-1/2 bg-[#f2f2f2] rounded-full pl-6 pr-[6px] py-[6px] flex items-center gap-8 z-50 max-md:hidden">
         <img src={misoLogo} alt="miso" className="h-[20px] shrink-0" />
         <div className="flex gap-6 text-sm font-semibold text-[#313131]">
-            <span className="cursor-pointer transition-colors hover:text-[#ff7416]">Features</span>
-            <span className="cursor-pointer transition-colors hover:text-[#ff7416]">How It Works</span>
-            <span className="cursor-pointer transition-colors hover:text-[#ff7416]">About</span>
+            <a href="#features" className="cursor-pointer transition-colors hover:text-[#ff7416]">Features</a>
+            <a href="#how-it-works" className="cursor-pointer transition-colors hover:text-[#ff7416]">How It Works</a>
+            <a href="#about" className="cursor-pointer transition-colors hover:text-[#ff7416]">About</a>
         </div>
-        <div className="group bg-[#313131] text-white px-4 py-2 rounded-full text-sm font-bold cursor-pointer flex items-center gap-1">
-            Get Miso
+        <div onClick={onOpenSignup} className="group bg-[#313131] text-white px-4 py-2 rounded-full text-sm font-bold cursor-pointer flex items-center gap-1">
+            Get Early Access
             <span className="inline-block max-w-0 overflow-hidden opacity-0 transition-all duration-200 group-hover:max-w-[20px] group-hover:opacity-100">→</span>
         </div>
       </div>
@@ -149,25 +149,15 @@ export function Hero({ onEasterEgg }: { onEasterEgg?: () => void }) {
           Your cards, credit, earnings, and automation all in one app.
         </motion.p>
         <motion.div
+          onClick={onOpenSignup}
           className="group bg-[#313131] text-white px-8 py-3 rounded-full font-bold flex items-center gap-1 cursor-pointer mt-4 hover:scale-105 transition-transform text-[14px] md:text-[16px]"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: SUBTITLE_DELAY + 0.15 }}
         >
-          Get Miso
+          Get Early Access
           <span className="inline-block max-w-0 overflow-hidden opacity-0 transition-all duration-200 group-hover:max-w-[20px] group-hover:opacity-100">→</span>
         </motion.div>
-        <motion.button
-          onClick={onEasterEgg}
-          className="group flex items-center gap-1.5 mt-3 px-3 py-1.5 rounded-lg border border-[#FFB580] bg-[#FFF5ED] hover:bg-[#FFEAD9] hover:border-[#FF8C42] transition-all cursor-pointer z-10"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: SUBTITLE_DELAY + 0.4 }}
-        >
-          <kbd className="px-1.5 py-0.5 rounded bg-[#FFE8D4] border border-[#FFB580] text-[10px] font-bold text-[#CC5500] shadow-[0_1px_0_0_#FFCC99]">⌘</kbd>
-          <kbd className="px-1.5 py-0.5 rounded bg-[#FFE8D4] border border-[#FFB580] text-[10px] font-bold text-[#CC5500] shadow-[0_1px_0_0_#FFCC99]">K</kbd>
-          <span className="text-[11px] text-[#E06600] font-semibold">psst... try me</span>
-        </motion.button>
       </motion.div>
 
       <motion.div
