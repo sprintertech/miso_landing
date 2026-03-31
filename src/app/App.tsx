@@ -27,8 +27,7 @@ function AnimatedBowl({ visible }: { visible: boolean }) {
 
   return (
     <motion.svg
-      width="320"
-      height="132"
+      className="w-full h-auto"
       viewBox="0 0 320 132"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -104,14 +103,14 @@ function BottomCTA({ onOpenSignup }: { onOpenSignup: () => void }) {
     <div className="w-full max-w-[1280px] mx-auto px-4 mb-12 md:mb-20">
       <div ref={ref} className="bg-[#ebfeff] rounded-[24px] relative overflow-hidden min-h-[200px] md:min-h-[240px]">
         <div className="flex flex-col gap-3 md:gap-4 items-start justify-center px-6 py-8 md:px-10 md:py-10">
-          <h2 className="text-[28px] md:text-[48px] font-bold text-[#1f1f1f] leading-tight max-w-[70%] md:max-w-none">Your money should work both ways</h2>
-          <p className="text-[14px] md:text-[20px] font-semibold text-[#717171] leading-relaxed md:leading-[32px] max-w-[65%] md:max-w-none">Credit when you need it, earnings that never stop. Why choose?</p>
+          <h2 className="text-[22px] md:text-[48px] font-bold text-[#1f1f1f] leading-tight">Your money should work both ways</h2>
+          <p className="text-[14px] md:text-[20px] font-semibold text-[#717171] leading-relaxed md:leading-[32px]">Credit when you need it, earnings that never stop. Why choose?</p>
           <div onClick={onOpenSignup} className="group bg-[#1f1f1f] text-white px-6 md:px-8 py-3 rounded-full font-bold flex items-center gap-1 cursor-pointer hover:scale-105 transition-transform text-[14px] md:text-[16px]">
             Get Early Access
             <span className="inline-block max-w-0 overflow-hidden opacity-0 transition-all duration-200 group-hover:max-w-[20px] group-hover:opacity-100">→</span>
           </div>
         </div>
-        <div className="absolute right-[10px] md:right-[20px] bottom-0 w-[160px] md:w-[320px] pointer-events-none">
+        <div className="absolute right-[40px] md:right-[20px] bottom-[-4px] w-[128px] md:w-[320px] pointer-events-none">
           <AnimatedBowl visible={isInView} />
         </div>
       </div>

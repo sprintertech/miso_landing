@@ -111,7 +111,7 @@ export function EverythingInTheMix() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 w-full md:auto-rows-[356px]">
         {/* All your cards - Span 2 cols, 2 rows */}
         <div className="md:col-span-2 md:row-span-2 h-[280px] md:h-auto bg-[#f9f9f9] rounded-[24px] p-6 md:p-9 overflow-hidden relative">
-          <h3 className="text-[20px] md:text-[24px] font-bold text-[#313131] mb-2">All your cards, one place.</h3>
+          <h3 className="text-[20px] md:text-[24px] font-bold text-[#313131] mb-2 whitespace-nowrap">All your cards, one place.</h3>
           <p className="text-[14px] md:text-[16px] font-semibold text-[#bababa] max-w-[400px]">Connect, compare, and spend with the right card every time.</p>
           <div className="absolute left-1/2 bottom-0 -translate-x-1/2 translate-y-1/4 w-[70%] md:w-[120%]">
              <ImageWithFallback src={img123121} alt="Cards" className="w-full object-contain" />
@@ -120,8 +120,8 @@ export function EverythingInTheMix() {
 
         {/* Your rules - Span 2 cols */}
         <div className="md:col-span-2 h-[280px] md:h-auto bg-[#f9f9f9] rounded-[24px] p-6 md:p-9 relative overflow-hidden">
-          <div className="w-2/3 md:w-1/2">
-            <h3 className="text-[20px] md:text-[24px] font-bold text-[#313131] mb-2">Your rules, your control.</h3>
+          <div className="w-full md:w-1/2">
+            <h3 className="text-[20px] md:text-[24px] font-bold text-[#313131] mb-2 whitespace-nowrap">Your rules, your control.</h3>
             <p className="text-[14px] md:text-[16px] font-semibold text-[#bababa]">No more manual top-ups. Set your rules once and let them run, and Miso handles the rest.</p>
           </div>
           <MixingLevels />
@@ -129,20 +129,20 @@ export function EverythingInTheMix() {
 
         {/* Collateral */}
         <div className="bg-[#f4ffe0] rounded-[24px] p-6 md:p-9 flex flex-col justify-between h-[180px] md:h-auto">
-          <h3 className="text-[20px] md:text-[24px] font-bold text-[#313131] mb-2">Collateral that works for you.</h3>
+          <h3 className="text-[20px] md:text-[24px] font-bold text-[#313131] mb-2 whitespace-nowrap">Collateral that works for you.</h3>
           <p className="text-[14px] md:text-[16px] font-semibold text-[#abcd6b]">Not just stablecoins. Miso works with the assets you actually hold.</p>
         </div>
 
         {/* Credit Without Selling */}
         <div className="bg-[#ffedec] rounded-[24px] p-6 md:p-9 flex flex-col justify-between h-[180px] md:h-auto">
-          <h3 className="text-[20px] md:text-[24px] font-bold text-[#313131] mb-2">Credit Without Selling.</h3>
+          <h3 className="text-[20px] md:text-[24px] font-bold text-[#313131] mb-2 whitespace-nowrap">Credit Without Selling.</h3>
           <p className="text-[14px] md:text-[16px] font-semibold text-[#edb3b3]">Most cards make you sell to spend. Miso gives you credit backed by what you hold, your portfolio stays intact.</p>
         </div>
 
         {/* Earn while you borrow - Span 2 cols */}
         <div className="md:col-span-2 h-[280px] md:h-auto bg-[#f9f9f9] rounded-[24px] p-6 md:p-9 relative overflow-hidden">
-          <div className="w-2/3 md:w-1/2">
-            <h3 className="text-[20px] md:text-[24px] font-bold text-[#313131] mb-2">Earn while you borrow.</h3>
+          <div className="w-full md:w-1/2">
+            <h3 className="text-[20px] md:text-[24px] font-bold text-[#313131] mb-2 whitespace-nowrap">Earn while you borrow.</h3>
             <p className="text-[14px] md:text-[16px] font-semibold text-[#bababa]">The money backing your credit doesn't sit idle. It keeps earning the whole time you're spending against it.</p>
           </div>
           <PixelDollarSigns />
@@ -150,11 +150,11 @@ export function EverythingInTheMix() {
 
         {/* Unified Dashboard - Span 2 cols */}
         <div className="md:col-span-2 h-[280px] md:h-auto bg-[#f9f9f9] rounded-[24px] p-6 md:p-9 relative overflow-hidden">
-          <div className="w-2/3 md:w-1/3">
-            <h3 className="text-[20px] md:text-[24px] font-bold text-[#313131] mb-2">Unified Dashboard.</h3>
+          <div className="w-full md:w-1/3">
+            <h3 className="text-[20px] md:text-[24px] font-bold text-[#313131] mb-2 whitespace-nowrap">Unified Dashboard.</h3>
             <p className="text-[14px] md:text-[16px] font-semibold text-[#bababa]">All your cards, balances, and credit in one place. You always know exactly where you stand.</p>
           </div>
-          <div className="absolute right-[16px] top-[80px] bottom-[-60px] w-[140px] md:right-[36px] md:top-[48px] md:w-[244px]">
+          <div className="absolute right-[16px] top-[150px] bottom-[-60px] w-[200px] md:right-[36px] md:top-[48px] md:w-[244px]">
              <ImageWithFallback src={img9Fcb87D542F84A9B991707F6272196Ed2} alt="Dashboard" className="w-full h-full object-cover object-top rounded-[24px] shadow-2xl" />
           </div>
         </div>
