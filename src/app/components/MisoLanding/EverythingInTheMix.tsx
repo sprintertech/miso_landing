@@ -79,7 +79,7 @@ function MixingLevels() {
   ];
 
   return (
-    <div className="absolute right-[20px] bottom-[20px] w-[140px] h-[140px] md:right-[36px] md:bottom-[36px] md:w-[220px] md:h-[218px]">
+    <div className="absolute right-[20px] bottom-[20px] w-[112px] h-[112px] md:right-[36px] md:bottom-[36px] md:w-[220px] md:h-[218px]">
       <svg className="w-full h-full" viewBox="0 0 220 218" fill="none">
         {tracks.map((t, i) => (
           <g key={i}>
@@ -154,7 +154,7 @@ export function EverythingInTheMix() {
             <h3 className="text-[20px] md:text-[24px] font-bold text-[#313131] mb-2">Unified Dashboard.</h3>
             <p className="text-[14px] md:text-[16px] font-semibold text-[#bababa]">All your cards, balances, and credit in one place. You always know exactly where you stand.</p>
           </div>
-          <div className="absolute right-[16px] top-[48px] bottom-[-60px] w-[140px] md:right-[36px] md:w-[244px]">
+          <div className="absolute right-[16px] top-[80px] bottom-[-60px] w-[140px] md:right-[36px] md:top-[48px] md:w-[244px]">
              <ImageWithFallback src={img9Fcb87D542F84A9B991707F6272196Ed2} alt="Dashboard" className="w-full h-full object-cover object-top rounded-[24px] shadow-2xl" />
           </div>
         </div>
