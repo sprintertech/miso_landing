@@ -26,7 +26,7 @@ const DOT_DELAY = words.length * WORD_STAGGER + 0.3;
 const SUBTITLE_DELAY = DOT_DELAY + 0.5;
 const MASCOT_DELAY = 0.2;
 
-function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
+function MobileMenu({ open, onClose, onOpenSignup }: { open: boolean; onClose: () => void; onOpenSignup: () => void }) {
   return (
     <AnimatePresence>
       {open && (
@@ -49,7 +49,7 @@ function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
             <a href="#features" className="text-2xl font-semibold text-[#313131] cursor-pointer" onClick={onClose}>Features</a>
             <a href="#how-it-works" className="text-2xl font-semibold text-[#313131] cursor-pointer" onClick={onClose}>How It Works</a>
             <a href="#about" className="text-2xl font-semibold text-[#313131] cursor-pointer" onClick={onClose}>About</a>
-            <div onClick={onOpenSignup} className="group bg-[#313131] text-white px-8 py-3 rounded-full text-lg font-bold cursor-pointer flex items-center gap-1 mt-4">
+            <div onClick={() => { onClose(); onOpenSignup(); }} className="group bg-[#313131] text-white px-8 py-3 rounded-full text-lg font-bold cursor-pointer flex items-center gap-1 mt-4">
               Get Early Access
               <span className="inline-block max-w-0 overflow-hidden opacity-0 transition-all duration-200 group-hover:max-w-[20px] group-hover:opacity-100">→</span>
             </div>
@@ -112,7 +112,7 @@ export function Hero({ onOpenSignup }: { onOpenSignup: () => void }) {
         </button>
       </div>
 
-      <MobileMenu open={menuOpen} onClose={() => setMenuOpen(false)} />
+      <MobileMenu open={menuOpen} onClose={() => setMenuOpen(false)} onOpenSignup={onOpenSignup} />
 
       <motion.div
         className="relative z-10 flex flex-col items-center text-center gap-4 md:gap-6 px-6"
