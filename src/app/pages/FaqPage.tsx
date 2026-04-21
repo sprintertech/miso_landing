@@ -320,9 +320,9 @@ export function FaqPage() {
             <img src={misoLogo} alt="miso" className="h-[20px] shrink-0" />
           </Link>
           <div className="flex gap-6 text-sm font-semibold text-[#313131]">
-            <a href="/#features" className="cursor-pointer transition-colors hover:text-[#ff7416]">Features</a>
-            <a href="/#how-it-works" className="cursor-pointer transition-colors hover:text-[#ff7416]">How It Works</a>
-            <a href="/#about" className="cursor-pointer transition-colors hover:text-[#ff7416]">About</a>
+            <Link to="/#features" className="cursor-pointer transition-colors hover:text-[#ff7416]">Features</Link>
+            <Link to="/#how-it-works" className="cursor-pointer transition-colors hover:text-[#ff7416]">How It Works</Link>
+            <Link to="/#about" className="cursor-pointer transition-colors hover:text-[#ff7416]">About</Link>
             <Link to="/faq" className="cursor-pointer transition-colors text-[#ff7416]">FAQ</Link>
           </div>
           <Link
