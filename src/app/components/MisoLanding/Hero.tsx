@@ -47,9 +47,9 @@ function MobileMenu({ open, onClose, onOpenSignup }: { open: boolean; onClose: (
             </button>
           </div>
           <div className="flex flex-col items-center gap-8 mt-12">
-            <a href="#features" className="text-2xl font-semibold text-[#313131] cursor-pointer" onClick={onClose}>Features</a>
-            <a href="#how-it-works" className="text-2xl font-semibold text-[#313131] cursor-pointer" onClick={onClose}>How It Works</a>
-            <a href="#about" className="text-2xl font-semibold text-[#313131] cursor-pointer" onClick={onClose}>About</a>
+            <Link to="#features" className="text-2xl font-semibold text-[#313131] cursor-pointer" onClick={onClose}>Features</Link>
+            <Link to="#how-it-works" className="text-2xl font-semibold text-[#313131] cursor-pointer" onClick={onClose}>How It Works</Link>
+            <Link to="#about" className="text-2xl font-semibold text-[#313131] cursor-pointer" onClick={onClose}>About</Link>
             <Link to="/faq" className="text-2xl font-semibold text-[#313131] cursor-pointer" onClick={onClose}>FAQ</Link>
             <div onClick={() => { onClose(); onOpenSignup(); }} className="group bg-[#313131] text-white px-8 py-3 rounded-full text-lg font-bold cursor-pointer flex items-center gap-1 mt-4">
               Get Early Access
@@ -95,9 +95,9 @@ export function Hero({ onOpenSignup }: { onOpenSignup: () => void }) {
       <div className="absolute top-6 left-1/2 -translate-x-1/2 bg-[#f2f2f2] rounded-full pl-6 pr-[6px] py-[6px] flex items-center gap-8 z-50 max-md:hidden">
         <img src={misoLogo} alt="miso" className="h-[20px] shrink-0" />
         <div className="flex gap-6 text-sm font-semibold text-[#313131]">
-            <a href="#features" className="cursor-pointer transition-colors hover:text-[#ff7416]">Features</a>
-            <a href="#how-it-works" className="cursor-pointer transition-colors hover:text-[#ff7416]">How It Works</a>
-            <a href="#about" className="cursor-pointer transition-colors hover:text-[#ff7416]">About</a>
+            <Link to="#features" className="cursor-pointer transition-colors hover:text-[#ff7416]">Features</Link>
+            <Link to="#how-it-works" className="cursor-pointer transition-colors hover:text-[#ff7416]">How It Works</Link>
+            <Link to="#about" className="cursor-pointer transition-colors hover:text-[#ff7416]">About</Link>
             <Link to="/faq" className="cursor-pointer transition-colors hover:text-[#ff7416]">FAQ</Link>
         </div>
         <div onClick={onOpenSignup} className="group bg-[#313131] text-white px-4 py-2 rounded-full text-sm font-bold cursor-pointer flex items-center gap-1">

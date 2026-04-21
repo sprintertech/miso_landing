@@ -1,5 +1,6 @@
 import { motion, useInView, AnimatePresence } from 'motion/react';
 import { useRef, useState, useEffect } from 'react';
+import { useLocation } from 'react-router';
 import { Hero } from "./components/MisoLanding/Hero";
 import { Stats } from "./components/MisoLanding/Stats";
 import { MissingIngredient } from "./components/MisoLanding/MissingIngredient";
@@ -122,6 +123,13 @@ export default function App() {
   const [gameOpen, setGameOpen] = useState(false);
   const [signupOpen, setSignupOpen] = useState(false);
   const openSignup = () => setSignupOpen(true);
+  const location = useLocation();
+
+  useEffect(() => {
+    if (!location.hash) return;
+    const el = document.querySelector(location.hash);
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  }, [location.hash]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
