@@ -353,7 +353,7 @@ export function FaqPage() {
             Frequently Asked Questions
           </h1>
           <p className="text-[18px] leading-[28px] text-[#536471]">
-            Everything you need to know about Miso
+            Everything you need to know about using Miso to earn DeFi yields and spend with your existing cards.
           </p>
         </div>
 
