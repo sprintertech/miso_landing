@@ -1,5 +1,6 @@
 import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from 'motion/react';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router';
 import misoLogo from '../../../assets/logo.svg';
 import seaweedSvg from '../../../assets/mascots/Seaweed.svg';
 import carrotSvg from '../../../assets/mascots/Carrot.svg';
@@ -49,6 +50,7 @@ function MobileMenu({ open, onClose, onOpenSignup }: { open: boolean; onClose: (
             <a href="#features" className="text-2xl font-semibold text-[#313131] cursor-pointer" onClick={onClose}>Features</a>
             <a href="#how-it-works" className="text-2xl font-semibold text-[#313131] cursor-pointer" onClick={onClose}>How It Works</a>
             <a href="#about" className="text-2xl font-semibold text-[#313131] cursor-pointer" onClick={onClose}>About</a>
+            <Link to="/faq" className="text-2xl font-semibold text-[#313131] cursor-pointer" onClick={onClose}>FAQ</Link>
             <div onClick={() => { onClose(); onOpenSignup(); }} className="group bg-[#313131] text-white px-8 py-3 rounded-full text-lg font-bold cursor-pointer flex items-center gap-1 mt-4">
               Get Early Access
               <span className="inline-block max-w-0 overflow-hidden opacity-0 transition-all duration-200 group-hover:max-w-[20px] group-hover:opacity-100">→</span>
@@ -96,6 +98,7 @@ export function Hero({ onOpenSignup }: { onOpenSignup: () => void }) {
             <a href="#features" className="cursor-pointer transition-colors hover:text-[#ff7416]">Features</a>
             <a href="#how-it-works" className="cursor-pointer transition-colors hover:text-[#ff7416]">How It Works</a>
             <a href="#about" className="cursor-pointer transition-colors hover:text-[#ff7416]">About</a>
+            <Link to="/faq" className="cursor-pointer transition-colors hover:text-[#ff7416]">FAQ</Link>
         </div>
         <div onClick={onOpenSignup} className="group bg-[#313131] text-white px-4 py-2 rounded-full text-sm font-bold cursor-pointer flex items-center gap-1">
             Get Early Access
