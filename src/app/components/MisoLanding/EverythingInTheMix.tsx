@@ -129,13 +129,13 @@ export function EverythingInTheMix() {
 
         {/* Collateral */}
         <div className="bg-[#f4ffe0] rounded-[24px] p-6 md:p-9 flex flex-col justify-between h-[180px] md:h-auto">
-          <h3 className="text-[20px] md:text-[24px] font-bold text-[#313131] mb-2 whitespace-nowrap">Collateral that works for you.</h3>
+          <h3 className="text-[20px] md:text-[24px] font-bold text-[#313131] mb-2">Collateral that works for you.</h3>
           <p className="text-[14px] md:text-[16px] font-semibold text-[#abcd6b]">Not just stablecoins. Miso works with the assets you actually hold.</p>
         </div>
 
         {/* Credit Without Selling */}
         <div className="bg-[#ffedec] rounded-[24px] p-6 md:p-9 flex flex-col justify-between h-[180px] md:h-auto">
-          <h3 className="text-[20px] md:text-[24px] font-bold text-[#313131] mb-2 whitespace-nowrap">Credit Without Selling.</h3>
+          <h3 className="text-[20px] md:text-[24px] font-bold text-[#313131] mb-2">Credit Without Selling.</h3>
           <p className="text-[14px] md:text-[16px] font-semibold text-[#edb3b3]">Most cards make you sell to spend. Miso gives you credit backed by what you hold, your portfolio stays intact.</p>
         </div>
 

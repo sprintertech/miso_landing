@@ -16,7 +16,20 @@
       "Bash(git branch -M main)",
       "Bash(git push -u origin main)",
       "WebFetch(domain:tally.so)",
-      "WebSearch"
+      "WebSearch",
+      "Bash(git commit -m \"$(cat <<''EOF''\nAdd nav anchor links, replace CTAs with early access signup modal, clean up footer\n\n- Link Features/How It Works/About nav items to page sections\n- Replace all \"Get Miso\" CTAs with \"Get Early Access\" opening a branded Tally signup modal\n- Remove easter egg button from hero\n- Simplify footer to logo + copyright only\n- Fix miso-logo-icon.svg aspect ratio distortion\nEOF\n)\")",
+      "Bash(grep -r earn /Users/diogoribeiro/brocode/miso_landing/src --include=*.tsx --include=*.ts)",
+      "Bash(grep -r dashboard /Users/diogoribeiro/brocode/miso_landing/src --include=*.tsx --include=*.ts)",
+      "Bash(npm run:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(git pull:*)",
+      "Bash(git stash:*)",
+      "Bash(echo \"exit: $?\")",
+      "Bash(git rm:*)",
+      "Bash(git checkout:*)",
+      "Bash(gh pr:*)"
     ],
     "deny": [],
     "ask": []
